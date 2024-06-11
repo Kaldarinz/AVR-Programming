@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 /*
    Demonstrates using state to detect button presses
 */

@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
                                     /* Demos PWM control of a DC motor */
 
 // ------- Preamble -------- //

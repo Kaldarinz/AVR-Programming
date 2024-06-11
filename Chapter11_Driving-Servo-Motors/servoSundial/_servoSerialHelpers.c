@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
               /* Functions for serial port output formatting and input */
 #include "_servoSerialHelpers.h"
 

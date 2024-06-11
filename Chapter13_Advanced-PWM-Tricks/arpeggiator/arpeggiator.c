@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 /* 
  *  "Algorithmic Symphonies"
  *  When you combine modula arithmetic with a counter variable, 

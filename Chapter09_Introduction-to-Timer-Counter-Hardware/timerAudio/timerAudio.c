@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 /*
 
 Quick audio demo using Timer 0 to generate audio frequencies directly.

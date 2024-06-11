@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
                                             /* SPI EEPROM 25LC256 Demo */
 
 // ------- Preamble -------- //

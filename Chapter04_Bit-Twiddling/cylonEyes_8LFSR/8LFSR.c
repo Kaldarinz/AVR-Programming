@@ -1,4 +1,6 @@
+#define __AVR_ATmega328P__
 // ------- Preamble -------- //
+#define __AVR_ATmega32U4__
 #include <avr/io.h>
 #include <util/delay.h>
 

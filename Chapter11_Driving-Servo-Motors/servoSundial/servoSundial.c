@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
                            /* Quasi-realtime-clock with servo sundial. */
 
 // ------- Includes -------- //

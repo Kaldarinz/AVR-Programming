@@ -1,6 +1,8 @@
+#define __AVR_ATmega328P__
 // POV toy demo framework //
 
 // ------- Preamble -------- //
+#define __AVR_ATmega32U4__
 #include <avr/io.h>
 #include <util/delay.h>
 

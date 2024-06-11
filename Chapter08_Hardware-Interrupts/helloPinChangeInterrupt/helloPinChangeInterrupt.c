@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
      /* Demo using pin-change interrupts and in-ISR debouncing routine */
 
 // ------- Preamble -------- //

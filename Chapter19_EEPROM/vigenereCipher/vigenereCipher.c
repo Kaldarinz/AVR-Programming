@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 /*
 Vigenere Cipher encoder / decoder demo
 And an excuse to play around with EEPROM memory

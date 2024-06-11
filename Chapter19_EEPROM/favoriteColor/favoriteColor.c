@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 #include <avr/io.h>
 #include <avr/eeprom.h>
 #include <USART.h>

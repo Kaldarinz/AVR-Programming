@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 /*
   Space Invaders POV demo by Elliot Williams
   This version stores the displays in arrays,

@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
             /* Showing off some patterns to practice our bit-twiddling */
 
 // ------- Preamble -------- //

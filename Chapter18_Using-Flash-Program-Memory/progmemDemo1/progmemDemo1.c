@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
                               /* First steps into using program memory */
 
 #include <avr/io.h>

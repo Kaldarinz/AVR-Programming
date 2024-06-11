@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 /*
 
 Demo of using interrupts for doing what they do best --

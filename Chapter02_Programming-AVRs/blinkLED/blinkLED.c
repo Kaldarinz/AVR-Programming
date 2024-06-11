@@ -1,5 +1,6 @@
+#define __AVR_ATmega328P__
                                                        /* Blinker Demo */
-
+#define __AVR_ATmega32U4__ 
 // ------- Preamble -------- //
 #include <avr/io.h>                        /* Defines pins, ports, etc */
 #include <util/delay.h>                     /* Functions to waste time */
@@ -16,10 +17,10 @@ int main(void) {
   while (1) {
 
     PORTB = 0b00000001;          /* Turn on first LED bit/pin in PORTB */
-    _delay_ms(1000);                                           /* wait */
+    _delay_ms(3000);                                           /* wait */
 
     PORTB = 0b00000000;          /* Turn off all B pins, including LED */
-    _delay_ms(1000);                                           /* wait */
+    _delay_ms(3000);                                           /* wait */
 
   }                                                  /* End event loop */
   return 0;                            /* This line is never reached */

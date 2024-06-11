@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 #include "i2c.h"
 
 void initI2C(void) {

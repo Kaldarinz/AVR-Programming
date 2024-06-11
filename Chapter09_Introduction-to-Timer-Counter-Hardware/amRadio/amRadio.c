@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 /*
 Plays a simple tune, broadcasts it in the AM radio band.
 */

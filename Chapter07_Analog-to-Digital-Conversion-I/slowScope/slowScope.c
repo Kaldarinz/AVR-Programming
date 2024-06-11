@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 // Slow-scope.  A free-running AVR / ADC "oscilloscope"
 
 // ------- Preamble -------- //

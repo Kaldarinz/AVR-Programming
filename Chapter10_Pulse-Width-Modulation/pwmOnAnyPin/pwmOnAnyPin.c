@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 // Quick and dirty demo of how to get PWM on any pin with interrupts
 // ------- Preamble -------- //
 #include <avr/io.h>

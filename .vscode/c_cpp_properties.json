@@ -4,9 +4,12 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/usr/lib/avr/include/"
+                "/usr/lib/avr/include/",
+                "/home/anton/dev/Atmel/AVR-Programming/AVR-Programming-Library/"
             ],
-            "defines": [],
+            "defines": [
+                "#define __AVR_ATmega32U4__ "
+            ],
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c17",
             "cppStandard": "gnu++17",

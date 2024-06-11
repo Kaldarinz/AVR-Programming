@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
                           /* Stepper Motor Demo with Accelerated Moves */
 
 // ------- Preamble -------- //

@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
                              /* Second steps into using program memory */
                                   /* Storing the addresses in pointers */
 

@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 // Quick Demo of light sensor
 
 // ------- Preamble -------- //

@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 /*
 
 Cylon eyes actually turns out to be a decent POV routine.

@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 /*
    Press the button as quickly as you can after the LEDs light up.
    Your time is printed out over the serial port.

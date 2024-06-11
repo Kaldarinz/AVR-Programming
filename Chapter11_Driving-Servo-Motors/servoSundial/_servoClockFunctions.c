@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 #include "_servoClockFunctions.h"
 
 // Realtime-clock handling functions

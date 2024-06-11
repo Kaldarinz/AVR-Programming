@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
                   /* Quick interactive demo running servo with Timer 1 */
 
 // ------- Preamble -------- //

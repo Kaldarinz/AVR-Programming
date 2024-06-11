@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 #include <avr/io.h>                        /* Defines pins, ports, etc */
 #define F_CPU 1000000UL          /* Sets up the chip speed for delay.h */
 #include <util/delay.h>                     /* Functions to waste time */

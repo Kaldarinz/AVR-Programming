@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
                 /* Reads LM75 Thermometer and Prints Value over Serial */
 
 // ------- Preamble -------- //

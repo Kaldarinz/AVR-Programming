@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
                        /* PWM Demo with serial control over three LEDs */
 
 // ------- Preamble -------- //

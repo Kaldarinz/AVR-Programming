@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 /*
 Simple routines to play notes out to a speaker
 */

@@ -1,4 +1,5 @@
-/*
+#define __AVR_ATmega328P__
+  /*
 A simple test of serial-port functionality.
 Takes in a character at a time and sends it right back out,
  displaying the ASCII value on the LEDs.

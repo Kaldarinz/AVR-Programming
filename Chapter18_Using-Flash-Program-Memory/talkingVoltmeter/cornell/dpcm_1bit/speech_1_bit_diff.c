@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 //Voice decompressor example
 #include <inttypes.h>
 #include <avr/io.h>

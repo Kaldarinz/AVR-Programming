@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 /* Cylon Eyes
    Half-stepping turns the next light on for a little bit,
    makes the pattern visually smoother, improves overall

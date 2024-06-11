@@ -1,36 +1,39 @@
-                                                         /* Cylon Eyes */
+#define __AVR_ATmega328P__
+#define __AVR_ATmega32U4__
 
-// ------- Preamble -------- //
-#include <avr/io.h>                        /* Defines pins, ports, etc */
-#include <util/delay.h>                     /* Functions to waste time */
+#include <avr/io.h>
+#include <avr/delay.h>
 
-#define DELAYTIME 85                                   /* milliseconds */
-#define LED_PORT                PORTB
-#define LED_PIN                 PINB
-#define LED_DDR                 DDRB
+#define DELAY     100
+
+#define LED_PORT    PORTB
+#define LED_PIN     PINB
+#define LED_DDR     DDRB
 
 int main(void) {
+  LED_DDR = 0xff;
+  uint8_t i = 0;
 
-  // -------- Inits --------- //
-  uint8_t i=0;
-  LED_DDR = 0xff;               /* Data Direction Register B:
-                                   all set up for output */
+  while (1)
+  {
+    while(i < 7)
+      {
+        LED_PORT |= (1 << i);
+        i++;
+        _delay_ms(DELAY);
+      }
+      LED_PORT |= (1 << i);
+      _delay_ms(DELAY);
+    while (i > 0)
+      {
+        LED_PORT >>= 1;
+        i--;
+        _delay_ms(DELAY);
+      }
+      LED_PORT >>= 1;
+      _delay_ms(DELAY);
+  }
 
-  // ------ Event loop ------ //
-  while (1) {
-
-    while (i < 7) {
-      LED_PORT = (1 << i);                 /* illuminate only i'th pin */
-      _delay_ms(DELAYTIME);                                    /* wait */
-      i = i + 1;                               /* move to the next LED */
-    }
-
-    while (i > 0) {
-      LED_PORT = (1 << i);                 /* illuminate only i'th pin */
-      _delay_ms(DELAYTIME);                                    /* wait */
-      i = i - 1;                           /* move to the previous LED */
-    }
-
-  }                                                  /* End event loop */
+  
   return 0;
 }

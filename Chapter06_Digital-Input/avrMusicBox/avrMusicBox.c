@@ -1,3 +1,4 @@
+#define __AVR_ATmega328P__
 // Music Box Input Demo
 
 // ------- Preamble -------- //
