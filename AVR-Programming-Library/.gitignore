@@ -1,2 +1,4 @@
-binaryMacroDemo.c
+**/*.hex
+**/*.o
+**/*.elf
 
