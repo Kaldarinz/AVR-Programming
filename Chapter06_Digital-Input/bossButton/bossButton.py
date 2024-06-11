@@ -8,7 +8,7 @@ BOSS_SITE = "http://www.cartalk.com/content/boss-redirect"
 ## or perhaps more topical...
 XKCD = "http://xkcd.com/353/"
 
-SERIAL_PORT = "/dev/ttyUSB0"
+SERIAL_PORT = "/dev/ttyUSB1"
 BAUD_RATE = 9600
 
 import serial

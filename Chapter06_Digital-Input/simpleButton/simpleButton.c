@@ -16,7 +16,7 @@ int main(void) {
 
   // ------ Event loop ------ //
   while (1) {
-    if (bit_is_clear(PIND, PD2)) {            /* look for button press */
+    if (PIND & (1 << PD2)) {            /* look for button press */
                       /* equivalent to if ((PIND & (1 << PD2)) == 0 ){ */
       PORTB = 0b00111100;                                   /* pressed */
     }
