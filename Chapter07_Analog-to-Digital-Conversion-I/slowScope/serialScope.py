@@ -1,6 +1,6 @@
 import serial
 
-def readValue(serialPort):
+def readValue(serialPort: serial.Serial):
     return(ord(serialPort.read(1)))
 
 def plotValue(value):

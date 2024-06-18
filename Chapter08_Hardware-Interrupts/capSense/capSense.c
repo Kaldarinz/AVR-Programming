@@ -1,4 +1,3 @@
-#define __AVR_ATmega328P__
 /*
    Capacitive touch sensor demo
 */
@@ -10,7 +9,7 @@
 #include "pinDefines.h"
 #include "USART.h"
 
-#define SENSE_TIME   50
+#define SENSE_TIME   5000
 #define THRESHOLD    12000
 
 // -------  Global Variables ---------- //
@@ -36,11 +35,11 @@ ISR(PCINT1_vect) {
 
 int main(void) {
   // -------- Inits --------- //
-  clock_prescale_set(clock_div_1);                       /* full speed */
+  //clock_prescale_set(clock_div_1);                       /* full speed */
   initUSART();
   printString("==[ Cap Sensor ]==\r\n\r\n");
 
-  LED_DDR = 0xff;
+  LED_DDR = 0x0;
   MCUCR |= (1 << PUD);                          /* disable all pullups */
   CAP_SENSOR_PORT |= (1 << CAP_SENSOR);    /* we can leave output high */
 
@@ -51,7 +50,9 @@ int main(void) {
 
     chargeCycleCount = 0;                             /* reset counter */
     CAP_SENSOR_DDR |= (1 << CAP_SENSOR);     /* start with cap charged */
+    _delay_us(1);                                      /* charging delay */
     sei();                            /* start up interrupts, counting */
+    CAP_SENSOR_DDR &= ~(1 << CAP_SENSOR);   
     _delay_ms(SENSE_TIME);
     cli();                                                     /* done */
     if (chargeCycleCount < THRESHOLD) {
@@ -61,7 +62,7 @@ int main(void) {
       LED_PORT = 0;
     }
     printWord(chargeCycleCount);                    /* for fine tuning */
-    printString("\r\n");
+    printString("\r");
 
   }                                                  /* End event loop */
   return 0;                            /* This line is never reached */

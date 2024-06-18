@@ -38,7 +38,7 @@ int main(void) {
   // ------ Event loop ------ //
   while (1) {
 
-    _delay_ms(200);
+    _delay_ms(1000);
     LED_PORT ^= (1 << LED0);
 
   }                                                  /* End event loop */
