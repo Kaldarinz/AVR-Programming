@@ -1,9 +1,10 @@
-#define __AVR_ATmega328P__
+// #define __AVR_ATmega328P__
                               /* First steps into using program memory */
 
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/pgmspace.h>
+#include <avr/power.h>
 #include "USART.h"
 
 const char myVeryLongString[] PROGMEM = "\r\nHi there, \
@@ -12,6 +13,7 @@ The kind that you wouldn't want to store in RAM.\r\n";
 const uint16_t sixteenBits PROGMEM = 12345;
 
 int main(void) {
+  clock_prescale_set(clock_div_8);  
   initUSART();
   char oneLetter;
   uint8_t i;
