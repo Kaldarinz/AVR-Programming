@@ -405,9 +405,9 @@ END GROUP
  .stab          0x0000000000000534      0x4f8 ../../AVR-Programming-Library/USART.o
                                         0xabc (size before relaxing)
 
-.stabstr        0x0000000000000000      0xe7d
+.stabstr        0x0000000000000000      0xed0
  *(.stabstr)
- .stabstr       0x0000000000000000      0xe7d serialLoopback.o
+ .stabstr       0x0000000000000000      0xed0 serialLoopback.o
 
 .stab.excl
  *(.stab.excl)

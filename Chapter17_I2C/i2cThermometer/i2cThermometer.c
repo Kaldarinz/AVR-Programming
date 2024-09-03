@@ -12,6 +12,11 @@
 
 // -------- Defines -------- //
 
+#define BMP085_ADDRESS_W             0b11101110
+#define BMP085_ADDRESS_R             0b11101111
+#define BMP085_TEMP_ADDR             0xF6
+#define BMP085_CTRL_REG              0xF4
+#define BMP085_TEMP_STRT             0x2E
 #define LM75_ADDRESS_W               0b10010000
 #define LM75_ADDRESS_R               0b10010001
 #define LM75_TEMP_REGISTER           0b00000000
@@ -23,6 +28,7 @@
 int main(void) {
 
   uint8_t tempHighByte, tempLowByte;
+  uint16_t ut;
 
   // -------- Inits --------- //
   clock_prescale_set(clock_div_1);                             /* 8MHz */
@@ -31,27 +37,36 @@ int main(void) {
   initI2C();
 
   // ------ Event loop ------ //
+  
   while (1) {
                         /* To set register, address LM75 in write mode */
     i2cStart();
-    i2cSend(LM75_ADDRESS_W);
-    i2cSend(LM75_TEMP_REGISTER);
+    i2cSend(BMP085_ADDRESS_W);
+    i2cSend(BMP085_CTRL_REG);
+    i2cSend(BMP085_TEMP_STRT);
+    _delay_ms(50);
+    i2cStart();
+    i2cSend(BMP085_ADDRESS_W);
+    i2cSend(BMP085_TEMP_ADDR);
     i2cStart();                      /* restart, just send start again */
                               /* Setup and send address, with read bit */
-    i2cSend(LM75_ADDRESS_R);
+    i2cSend(BMP085_ADDRESS_R);
                                /* Now receive two bytes of temperature */
     tempHighByte = i2cReadAck();
     tempLowByte = i2cReadNoAck();
+    ut = tempHighByte<<8;
+    ut += tempLowByte;
     i2cStop();
 
     // Print it out nicely over serial for now...
-    printByte(tempHighByte);
-    if (tempLowByte & _BV(7)) {
+    printWord(ut);
+    printString("\r\n");
+/*     if (tempLowByte & _BV(7)) {
       printString(".5\r\n");
     }
     else {
       printString(".0\r\n");
-    }
+    } */
 
                                                     /* Once per second */
     _delay_ms(1000);

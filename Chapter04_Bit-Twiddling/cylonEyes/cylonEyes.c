@@ -1,10 +1,9 @@
 #define __AVR_ATmega328P__
-#define __AVR_ATmega32U4__
 
 #include <avr/io.h>
 #include <avr/delay.h>
 
-#define DELAY     100
+#define DELAY     1000
 
 #define LED_PORT    PORTB
 #define LED_PIN     PINB

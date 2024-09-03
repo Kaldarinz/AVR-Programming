@@ -164,8 +164,8 @@ flash_109: flash
 
 ## Mega 48, 88, 168, 328 default values
 LFUSE = 0x62
-HFUSE = 0xdf
-EFUSE = 0x00
+HFUSE = 0xd9
+EFUSE = 0xff
 
 ## Generic 
 FUSE_STRING = -U lfuse:w:$(LFUSE):m -U hfuse:w:$(HFUSE):m -U efuse:w:$(EFUSE):m 
