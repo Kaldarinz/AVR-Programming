@@ -45,7 +45,7 @@ def quantize(data, thresholds):
 
 def pack4(data):                # for 2-bit data
     packedData = []
-    for i in range(len(data) / 4):
+    for i in range(int(len(data) / 4)):
         thisByte = 0
         thisByte += 2**6 * data[4*i]
         thisByte += 2**4 * data[4*i+1]
@@ -113,7 +113,7 @@ if __name__ == "__main__":
     allDigits = open("allDigits.h", "w")
     for digit in digits:
         filename = "DPCM_" + digit + "_8000.h"
-        print filename
+        print(filename)
         allDigits.write(open(filename).read())
     allDigits.close()
 

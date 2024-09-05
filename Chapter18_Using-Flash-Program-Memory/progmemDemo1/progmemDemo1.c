@@ -18,7 +18,7 @@ int main(void) {
   char oneLetter;
   uint8_t i;
 
-  while (1) {
+  while (1) { 
     for (i = 0; i < sizeof(myVeryLongString); i++) {
       oneLetter = pgm_read_byte(&(myVeryLongString[i]));
       transmitByte(oneLetter);
