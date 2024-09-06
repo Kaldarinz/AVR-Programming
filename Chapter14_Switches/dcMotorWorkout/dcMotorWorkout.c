@@ -15,8 +15,8 @@ static inline void initTimer0(void) {
   TCCR0A |= (1 << WGM00);                             /* Fast PWM mode */
   TCCR0A |= (1 << WGM01);                       /* Fast PWM mode, pt.2 */
   TCCR0A |= (1 << COM0B1);                        /* output PWM to pin */
-  TCCR0B |= (1 << CS02);                 /* Clock with /1024 prescaler */
-  //TCCR0B |= (1 << CS00);         /* Clock with /1024 prescaler, pt.2 */
+  //TCCR0B |= (1 << CS02);                 /* Clock with /1024 prescaler */
+  TCCR0B |= (1 << CS00);         /* Clock with /1024 prescaler, pt.2 */
 }
 
 
@@ -37,8 +37,10 @@ int main(void) {
 
   // ------ Event loop ------ //
   while (1) {
-
+    printString("\r\nListening...");
     updateSpeed = getNumber();
+    printString("\r\nTyped: ");
+    printByte(updateSpeed);
 
                                       /* Ramp up/down to desired speed */
     if (OCR0B < updateSpeed) {
