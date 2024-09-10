@@ -16,7 +16,7 @@
 
       /* These parameters will depend on your motor, what it's driving */
 #define MAX_DELAY    255               /* determines min startup speed */
-#define MIN_DELAY     10                /* determines max cruise speed */
+#define MIN_DELAY     15                /* determines max cruise speed */
 #define ACCELERATION  16          /* lower = smoother but slower accel */
 
 #define RAMP_STEPS    (MAX_DELAY - MIN_DELAY) / ACCELERATION
@@ -54,10 +54,12 @@ ISR(TIMER0_COMPA_vect) {
 }
 
 void takeSteps(uint16_t howManySteps, uint8_t delay) {
-  UDR0 = delay;          /* send speed/delay over serial, non-blocking */
+  // UDR0 = delay;          /* send speed/delay over serial, non-blocking */
   OCR0A = delay;                  /* delay in counter compare register */
   stepCounter = 0;            /* initialize to zero steps taken so far */
   TIMSK0 |= (1 << OCIE0A);             /* turn on interrupts, stepping */
+  printByte(delay);
+  printString("\n");
   while (!(stepCounter == howManySteps)) {;
   }                                                            /* wait */
   TIMSK0 &= ~(1 << OCIE0A);                           /* turn back off */
@@ -124,13 +126,13 @@ int main(void) {
 
                          /* Smooth movements, trapezoidal acceleration */
     trapezoidMove(2 * TURN);                         /* two full turns */
-    trapezoidMove(-TURN / 2);                             /* half turn */
-    trapezoidMove(TURN / 4);                           /* quarter turn */
-    trapezoidMove(-TURN / 8);                                /* eighth */
+/*     trapezoidMove(-TURN / 2);
+    trapezoidMove(TURN / 4); 
+    trapezoidMove(-TURN / 8);
     _delay_ms(TURN);
-    trapezoidMove(-TURN / 4);                         /* the other way */
+    trapezoidMove(-TURN / 4);
     trapezoidMove(TURN / 8);
-    trapezoidMove(TURN / 2);                /* half turn back to start */
+    trapezoidMove(TURN / 2);  */
     _delay_ms(1000);
 
   }                                                  /* End event loop */

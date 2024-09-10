@@ -22,7 +22,7 @@ LIBDIR = ../../AVR-Programming-Library
 
 PROGRAMMER_TYPE = avrisp
 # extra arguments to avrdude: baud rate, chip type, -F flag, etc.
-PROGRAMMER_ARGS = -P /dev/ttyUSB0 -b 19200
+PROGRAMMER_ARGS = -P /dev/ttyUSB2 -b 19200
 
 ##########------------------------------------------------------##########
 ##########                  Program Locations                   ##########

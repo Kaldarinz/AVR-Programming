@@ -1,6 +1,10 @@
 {
     "files.associations": {
         "io.h": "c",
-        "iom32u4.h": "c"
+        "iom32u4.h": "c",
+        "usart.h": "c",
+        "delay.h": "c",
+        "power.h": "c",
+        "interrupt.h": "c"
     }
 }
