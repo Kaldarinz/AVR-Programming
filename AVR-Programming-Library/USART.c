@@ -88,7 +88,18 @@ void printWord(uint16_t word) {
   transmitByte('0' + ((word / 10) % 10));                      /* Tens */
   transmitByte('0' + (word % 10));                             /* Ones */
 }
-
+void printLong(uint32_t lng) {
+  transmitByte('0' + (lng/1000000000));                      /*Billions*/
+  transmitByte('0' + ((lng/100000000) % 10));          /*Hundred-millions*/
+  transmitByte('0' + ((lng/10000000) % 10));               /*Ten-millions*/
+  transmitByte('0' + ((lng/1000000) % 10));                    /*Millions*/
+  transmitByte('0' + ((lng/100000) % 10));              /*Hundred-thousands*/
+  transmitByte('0' + (lng / 10000) % 10);                 /* Ten-thousands */
+  transmitByte('0' + ((lng / 1000) % 10));               /* Thousands */
+  transmitByte('0' + ((lng / 100) % 10));                 /* Hundreds */
+  transmitByte('0' + ((lng / 10) % 10));                      /* Tens */
+  transmitByte('0' + (lng % 10));                             /* Ones */
+}
 void printBinaryByte(uint8_t byte) {
                        /* Prints out a byte as a series of 1's and 0's */
   uint8_t bit;

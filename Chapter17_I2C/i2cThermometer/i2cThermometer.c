@@ -1,76 +1,77 @@
+#ifndef __AVR_ATmega328P__
 #define __AVR_ATmega328P__
-                /* Reads LM75 Thermometer and Prints Value over Serial */
+#endif
 
 // ------- Preamble -------- //
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/power.h>
 
-#include "pinDefines.h"
 #include "USART.h"
-#include "i2c.h"
+#include "i2c_isr.h"
 
 // -------- Defines -------- //
 
-#define BMP085_ADDRESS_W             0b11101110
-#define BMP085_ADDRESS_R             0b11101111
-#define BMP085_TEMP_ADDR             0xF6
-#define BMP085_CTRL_REG              0xF4
-#define BMP085_TEMP_STRT             0x2E
-#define LM75_ADDRESS_W               0b10010000
-#define LM75_ADDRESS_R               0b10010001
-#define LM75_TEMP_REGISTER           0b00000000
-#define LM75_CONFIG_REGISTER         0b00000001
-#define LM75_THYST_REGISTER          0b00000010
-#define LM75_TOS_REGISTER            0b00000011
-// -------- Functions --------- //
+#define BMP085_ADDRESS          0b01110111
+#define BMP085_TEMP_MSB         0xF6
+#define BMP085_TEMP_LSB         0xF7
+#define BMP085_CTRL_REG         0xF4
+#define BMP085_TEMP_STRT        0x2E
 
+#define TWSR_READ_MASK 0b11111000
+
+#define FREQ_100  100000
+// -------- Functions --------- //
 int main(void) {
 
-  uint8_t tempHighByte, tempLowByte;
   uint16_t ut;
-
+  uint8_t data[2];
+  uint8_t com_ind = 0;
+  uint8_t cur_stat = 0;
   // -------- Inits --------- //
   clock_prescale_set(clock_div_1);                             /* 8MHz */
   initUSART();
   printString("\r\n====  i2c Thermometer  ====\r\n");
-  initI2C();
-
+  i2c_init(FREQ_100);
+  //printByte(i2c_status);
+  uint8_t temp_start[2] = {BMP085_CTRL_REG, BMP085_TEMP_STRT};
+  uint8_t temp_req[1] = {BMP085_TEMP_MSB};
   // ------ Event loop ------ //
-  
   while (1) {
-                        /* To set register, address LM75 in write mode */
-    i2cStart();
-    i2cSend(BMP085_ADDRESS_W);
-    i2cSend(BMP085_CTRL_REG);
-    i2cSend(BMP085_TEMP_STRT);
-    _delay_ms(50);
-    i2cStart();
-    i2cSend(BMP085_ADDRESS_W);
-    i2cSend(BMP085_TEMP_ADDR);
-    i2cStart();                      /* restart, just send start again */
-                              /* Setup and send address, with read bit */
-    i2cSend(BMP085_ADDRESS_R);
-                               /* Now receive two bytes of temperature */
-    tempHighByte = i2cReadAck();
-    tempLowByte = i2cReadNoAck();
-    ut = tempHighByte<<8;
-    ut += tempLowByte;
-    i2cStop();
-
-    // Print it out nicely over serial for now...
-    printWord(ut);
-    printString("\r\n");
-/*     if (tempLowByte & _BV(7)) {
-      printString(".5\r\n");
-    }
-    else {
-      printString(".0\r\n");
+    cur_stat = i2c_run();
+/*     if (cur_stat)
+    {
+      printString("Status code: ");
+      printHexByte(cur_stat);
+      printString("\n");
     } */
-
-                                                    /* Once per second */
-    _delay_ms(1000);
-
+    if ( (i2c_status!=I2C_BUSY)&&(com_ind==0) )
+    {
+      i2c_master_send(BMP085_ADDRESS, temp_start, 2);
+      com_ind = 1;
+    }
+    else if ( (i2c_status!=I2C_BUSY)&&(com_ind==1) )
+    {
+      i2c_master_send(BMP085_ADDRESS, temp_req, 1);
+      com_ind = 2;
+    }
+    else if ( (i2c_status!=I2C_BUSY)&&(com_ind==2) )
+    {
+      i2c_master_read(BMP085_ADDRESS, data, 2);
+      com_ind = 3;
+    }
+    else if ( (i2c_status!=I2C_BUSY)&&(com_ind==3) )
+    {
+      ut = data[0]<<8;
+      ut += data[1];
+      printString("Temperature = ");
+      // printWord(ut);
+      printWord(ut);
+      printString("\r\n");
+      /* Once per second */
+      _delay_ms(1000);
+      com_ind = 0;
+    }
   }                                                  /* End event loop */
   return 0;                            /* This line is never reached */
 }

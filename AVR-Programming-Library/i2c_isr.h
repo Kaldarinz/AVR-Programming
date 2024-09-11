@@ -2,6 +2,8 @@
 #include <avr/power.h>
 #include <avr/interrupt.h>
 
+#include "USART.h"
+
 #define I2C_SCL_FREQUENCY_PRESCALER 1 // possible values 1, 4, 16, 64
 
 #define I2C_READY 0
@@ -9,7 +11,10 @@
 #define I2C_DONE 2
 #define I2C_ERROR 3
 
-volatile uint8_t i2c_status = I2C_READY;
+// #define MAX_DATA_SIZE 16 // Maximum amount of bytes to read
+
+volatile uint8_t i2c_status;
+// uint8_t i2c_data[MAX_DATA_SIZE];
 
 /**
  * \brief Performs the next i2c action. This funstion must be called in the main loop as frequently as possible.
@@ -18,7 +23,23 @@ volatile uint8_t i2c_status = I2C_READY;
  * 
  * \return void
  */
-void i2c_run(void);
+uint8_t i2c_run(void);
+
+void i2c_read_byte(void);
+
+void i2c_request_next_byte(void);
+
+void i2c_send_next_byte(void);
+
+void i2c_resend_byte(void);
+
+void i2c_choose_slave(void);
+
+void i2c_error(uint8_t err);
+
+void i2c_clear(void);
+
+void _set_prescaler(void);
 
 /**
  * \brief Performs the initialization routine for I2C device. 
@@ -29,7 +50,7 @@ void i2c_run(void);
  * 
  * \return void
  */
-void i2c_master_init(unsigned long frequency);
+void i2c_init(unsigned long frequency);
 
 /**
  * \brief Sends sequence of data bytes to Slave device with specified address. Sends START and STOP conditions.
@@ -40,4 +61,6 @@ void i2c_master_init(unsigned long frequency);
  * 
  * \return uint8_t On success - I2C_STATUS_SUCCESS. Otherwise - one of I2C_STATUS_ERROR codes.
  */
-void i2c_master_send(uint8_t address, uint8_t* data, uint16_t length);
+void i2c_master_send(uint8_t address, uint8_t* data, uint8_t length);
+
+void i2c_master_read(uint8_t address, uint8_t* data, uint8_t length);

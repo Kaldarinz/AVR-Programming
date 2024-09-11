@@ -5,6 +5,7 @@
         "usart.h": "c",
         "delay.h": "c",
         "power.h": "c",
-        "interrupt.h": "c"
+        "interrupt.h": "c",
+        "*.c__": "c"
     }
 }

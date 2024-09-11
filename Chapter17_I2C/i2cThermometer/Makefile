@@ -5,7 +5,7 @@
 ##########------------------------------------------------------##########
 
 MCU   = atmega328p
-F_CPU = 1000000UL  
+F_CPU = 8000000UL  
 BAUD  = 9600UL
 ## Also try BAUD = 19200 or 38400 if you're feeling lucky.
 
@@ -22,7 +22,7 @@ LIBDIR = ../../AVR-Programming-Library
 
 PROGRAMMER_TYPE = avrisp
 # extra arguments to avrdude: baud rate, chip type, -F flag, etc.
-PROGRAMMER_ARGS = -P /dev/ttyUSB2 -b 19200
+PROGRAMMER_ARGS = -P /dev/ttyUSB0 -b 19200
 
 ##########------------------------------------------------------##########
 ##########                  Program Locations                   ##########
