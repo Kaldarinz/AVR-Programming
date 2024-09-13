@@ -25,22 +25,6 @@ volatile uint8_t i2c_status;
  */
 uint8_t i2c_run(void);
 
-void i2c_read_byte(void);
-
-void i2c_request_next_byte(void);
-
-void i2c_send_next_byte(void);
-
-void i2c_resend_byte(void);
-
-void i2c_choose_slave(void);
-
-void i2c_error(uint8_t err);
-
-void i2c_clear(void);
-
-void _set_prescaler(void);
-
 /**
  * \brief Performs the initialization routine for I2C device. 
  *		Should be called just once, before any work with I2C device.
